@@ -37,3 +37,4 @@ This is a shop with messenger application written in the Django framework.
 * HTML5
 * CSS3
 * Bootstrap 4
+* Bulma
