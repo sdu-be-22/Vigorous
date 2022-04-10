@@ -1,0 +1,13 @@
+body{
+padding-top: 100px;
+ text-align: center;
+}
+a {
+text-decoration: none;
+font-size: 25px;
+color: green;
+padding-left: 4%;
+}
+h1{
+font-size: 40px
+}

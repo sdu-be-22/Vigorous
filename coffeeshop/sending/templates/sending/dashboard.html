@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="column">
+    {% for followed in user.profile.follows.all %}
+        {% for message in followed.user.messages.all %}
+            <div class="box">
+                {{ message.body }}
+                <span class="is-small has-text-grey-light">
+                    ({{ message.created_at }} by {{ message.user.username }})
+                </span>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="column is-one-third">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button is-success is-fullwidth is-medium mt-S"
+                type="submit">Send
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

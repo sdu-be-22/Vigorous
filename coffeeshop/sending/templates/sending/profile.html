@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="column">
+
+    <div class="block">
+      <h1 class="title is-1">
+          {{profile.user.username|upper}}'s Messages
+      </h1>
+    </div>
+  </div>
+
+  <div class="column is-one-third">
+
+    <div class="block">
+      <a href="http://127.0.0.1:8000/profile_list/">
+        <button class="button is-dark is-outlined is-fullwidth">
+          All profiles
+        </button>
+      </a>
+    </div>
+
+    <div class="block">
+      <h3 class="title is-4">
+        {{profile.user.username}} knows:
+      </h3>
+      <div class="content">
+        <ul>
+          {% for following in profile.follows.all %}
+            <li>
+              <a href="#">
+                {{ following }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+        <h3 class="title is-4">
+          {{profile.user.username}} is known:
+        </h3>
+      <div class="content">
+        <ul>
+          {% for follower in profile.followed_by.all %}
+          <li>
+            <a href="#">
+              {{ follower }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+
+<div class="content">
+  {% for message in profile.user.messages.all %}
+    <div class="box">
+      {{ message.body }}
+        <span class="is-small has-text-grey-light">
+          ({{ message.created_at }} by {{ message.user.username}})
+         </span>
+    </div>
+   {% endfor %}
+</div>
+
+
+
+{% endblock content %}
