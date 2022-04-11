@@ -31,10 +31,10 @@ class Message(models.Model):
     body = models.CharField(max_length=140)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return (
             f"{self.user} "
             f"({self.created_at:%Y-%m-%d %H:%M}): "
             f"{self.body[:30]}..."
-            )
+        )
+
