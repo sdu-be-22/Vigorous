@@ -8,6 +8,9 @@ import json
 import datetime
 from . forms import CommentForm, EmailForm
 from .utils import cartData, cookieCart, guestOrder, sendEmail
+from . forms import UserRegisterForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -162,4 +165,28 @@ def processOrder(request):
     print('Data:',request.body)
     return JsonResponse('Payment completed',safe=False)
 
-  
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        products = Product.objects.filter(name__contains=searched)
+        return render(request, 'shop/search.html', {'searched':searched}, {'products':products})
+    else:
+        return render(request, 'shop/search.html')
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Hi {username}, your account was created successfully')
+            return redirect()
+    else:
+        form = UserRegisterForm()
+
+    return render(request, 'shop/register.html', {'form': form})
+
+@login_required()
+def profile(request):
+    return render(request, 'shop/profile.html')
+
