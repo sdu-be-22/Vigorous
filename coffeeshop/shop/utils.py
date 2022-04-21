@@ -85,6 +85,7 @@ def guestOrder(request, data):
 
     return customer, order
 
+
 from django.core.mail import send_mail
 from django.conf import settings
 def sendEmail(request):
@@ -105,3 +106,4 @@ def sendEmail(request):
           form = EmailForm()
                     
     return form
+    
