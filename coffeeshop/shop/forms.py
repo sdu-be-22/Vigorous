@@ -9,3 +9,6 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'comment_body':forms.Textarea(attrs={'class':'forms-control'}),
         }
+        
+class EmailForm(forms.Form):
+    recipient = forms.EmailField()
