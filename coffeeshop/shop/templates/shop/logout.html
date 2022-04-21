@@ -1,0 +1,12 @@
+{% extends 'shop/main.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>You have been Logged out</h1>
+        <h5><a href="{% url 'shops:login' %}">Login In Again</a></h5>
+        <h1>Check out our site</h1>
+        <h5><a href="{% url 'shops:shop' %}">Vigorous</a></h5>
+    </div>
+{% endblock %}
