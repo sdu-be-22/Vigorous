@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'accounts.apps.AccountsConfig',
-    'sending'
+    'sending',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -120,16 +121,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+if not DEBUG:
+    STATIC_ROOT = ''
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
-LOGIN_REDIRECT_URL = '//'
-LOGOUT_REDIRECT_URL = '/'
-REGISTER_REDIRECT_URL = '/coffeshop/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+REGISTER_REDIRECT_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = 'login'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
