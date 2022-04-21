@@ -64,7 +64,7 @@
                         <form action="" method="post">
                         
                             {% csrf_token %}
-                            {{ form.as_p }}
+                            {{ form1.as_p }}
                             <input type="submit" name="Submit">
                         
                         </form>
@@ -74,7 +74,10 @@
                {% else %}
    
                    {% for comment in eachProduct.comments.all %}
-                        
+                    <h5><strong>{{ comment.commenter_name }}</strong></h5>
+                    <p>{{ comment.comment_body }}</p>
+                    <p><small>{{ comment.date_added }}</small></p>
+
                        {% if request.user.username == comment.commenter_name %}
                             <div>
                                 <h1 style="font-size: 40px; margin-left: 30px;" class="p-2">
@@ -85,7 +88,7 @@
                                     <form action="" method="post">
                                     
                                         {% csrf_token %}
-                                        {{ form.as_p }}
+                                        {{ form1.as_p }}
                                         <input type="submit" name="Submit">
                                     
                                     </form>
