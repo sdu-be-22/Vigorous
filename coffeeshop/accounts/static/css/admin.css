@@ -1,1 +1,28 @@
+#header, div.breadcrumbs, .submit-row input.default{
+    background: sienna;
+}
 
+.module caption,  #changelist-filter h2{
+    background:sienna;
+    border-radius: 15px;
+}
+
+.module, .module h2{
+   text-align: center;
+}
+
+.object-tools a.addlink {
+    background: forestgreen;
+}
+
+.object-tools a:link{
+    font-size: 16px;
+}
+#nav-filter{
+    text-align: center;
+    border-radius: 70px;
+}
+
+body{
+    font-family: Bahnschrift;
+}
