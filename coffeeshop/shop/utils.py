@@ -1,6 +1,6 @@
 import json
 from .models import *
-
+from .forms import EmailForm
 def cookieCart(request):
 
     try:
@@ -85,3 +85,23 @@ def guestOrder(request, data):
 
     return customer, order
 
+from django.core.mail import send_mail
+from django.conf import settings
+def sendEmail(request):
+    form = EmailForm()
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+
+        # check if data from the form is clean
+        if form.is_valid():
+            cd = form.cleaned_data
+            subject = "Subscribing to our news"
+            message = "Thank you!"
+            # send the email to the recipent
+            send_mail(subject, message,
+                      settings.DEFAULT_FROM_EMAIL, [cd['recipient']])
+
+    else:
+          form = EmailForm()
+                    
+    return form

@@ -1,21 +1,23 @@
 from itertools import product
 from multiprocessing import context
 from pkgutil import iter_importers
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import *
 import json
 import datetime
-from . forms import CommentForm
-from .utils import cartData, cookieCart, guestOrder
+from . forms import CommentForm, EmailForm
+from .utils import cartData, cookieCart, guestOrder, sendEmail
 # Create your views here.
 
 
 def shop(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    form = sendEmail(request)
     context = {
-        'title': 'Shop',
+        'form':form,
+        'title': 'Menu',
         'categories':categories,
         'products':products
     }
@@ -26,8 +28,9 @@ def cart(request):
 
     order = data['order']
     items = data['items']
-
+    form = sendEmail(request)
     context = {
+        'form':form,
         'title': 'Cart',
         'items':items,
         'order': order 
@@ -43,8 +46,9 @@ def checkout(request):
     data = cartData(request)
     order = data['order']
     items = data['items']
-
+    form = sendEmail(request)
     context = {
+        'form':form,
         'title': 'Checkout',
         'items':items,
         'order': order 
@@ -57,28 +61,29 @@ def checkout(request):
 def product_detail(request, slug):
     products = get_object_or_404(Product, slug = slug)
     eachProduct = Product.objects.get(slug=slug)
-    form = CommentForm(instance=eachProduct)
+    form1 = CommentForm(instance=eachProduct)
     num_comments = Comment.objects.filter(product=eachProduct).count()
 
 
 
     if request.method == 'POST':
-        form = CommentForm(request.POST,instance=eachProduct)
-        if form.is_valid():
+        form1 = CommentForm(request.POST,instance=eachProduct)
+        if form1.is_valid():
             name = request.user.username
-            body = form.cleaned_data['comment_body']
+            body = form1.cleaned_data['comment_body']
             c = Comment(product=eachProduct, commenter_name=name, comment_body=body, date_added= datetime.datetime.now().timestamp())
             c.save()
             return redirect('shops:product_detail' ,slug)
         else:
             print('form is invalid')    
     else:
-        form = CommentForm()    
+        form1 = CommentForm()    
 
-
+    form = sendEmail(request)
     context = {
-        'product': products,
         'form':form,
+        'product': products,
+        'form1':form1,
         'eachProduct':eachProduct,
         'num_comments':num_comments,
     }
@@ -86,31 +91,17 @@ def product_detail(request, slug):
 
 
 
-
-
-def category_list(request, category_slug):
+def base(request):
     categories = Category.objects.all()
     products = Product.objects.all()
-    if category_slug:
-        category = get_object_or_404(Category, slug = category_slug)
-        products = products.filter(category=category)
-
+    form = sendEmail(request)
     context = {
-        'category':category,
-        'categories':categories,
-        'products':products
-    }
-    return render(request, 'shop/category.html',)
-
-def menu(request):
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    context = {
+        'form':form,
         'title': 'menu',
         'categories':categories,
         'products':products
     }
-    return render(request, 'shop/menu.html',context)
+    return render(request, 'shop/base.html',context)
 
 
 def updateItem(request):
@@ -170,5 +161,3 @@ def processOrder(request):
 
     print('Data:',request.body)
     return JsonResponse('Payment completed',safe=False)
-
-  
