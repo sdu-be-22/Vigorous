@@ -22,7 +22,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('shop.urls',namespace='shops')),
-    path('register/', include('accounts.urls',namespace='accounts')),
     path('messenger/',include('sending.urls',namespace='sending'))
 ]
 
