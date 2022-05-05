@@ -88,8 +88,9 @@ def guestOrder(request, data):
 
 from django.core.mail import send_mail
 from django.conf import settings
-def sendEmail(request):
+def sendEmail(request,message = 'Thank you!'):
     form = EmailForm()
+    message = message
     if request.method == 'POST':
         form = EmailForm(request.POST)
 
@@ -97,7 +98,7 @@ def sendEmail(request):
         if form.is_valid():
             cd = form.cleaned_data
             subject = "Subscribing to our news"
-            message = "Thank you!"
+            message = message
             # send the email to the recipent
             send_mail(subject, message,
                       settings.DEFAULT_FROM_EMAIL, [cd['recipient']])

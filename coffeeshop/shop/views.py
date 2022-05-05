@@ -1,3 +1,4 @@
+from email import message
 from itertools import product
 from multiprocessing import context
 from pkgutil import iter_importers
@@ -173,18 +174,29 @@ def search(request):
     else:
         return render(request, 'shop/search.html')
 
+from django.core.mail import send_mail
+from django.conf import settings
 def register(request):
+    message = ''
     if request.method == "POST":
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Hi {username}, your account was created successfully')
-            return redirect()
+        form1 = UserRegisterForm(request.POST)
+        if form1.is_valid():
+            user = form1.save()
+            username = form1.cleaned_data.get('username')
+            message = f'Hi {username}, your account was created successfully'
+            send_mail('Account created', message,
+                      settings.DEFAULT_FROM_EMAIL, [user.email])
+            Customer.objects.create(user=user,name=user.username,email=user.email)
+            return redirect('shops:login')
     else:
-        form = UserRegisterForm()
-
-    return render(request, 'shop/register.html', {'form': form})
+        form1 = UserRegisterForm()
+    
+    form = sendEmail(request)
+    context = {
+        'form':form,
+        'form1':form1,
+    }
+    return render(request, 'shop/register.html', context)
 
 @login_required()
 def profile(request):
