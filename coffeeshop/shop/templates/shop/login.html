@@ -14,9 +14,15 @@
       <div class="form-group" id= "signup-button">
           <button class="btn ">Sign In</button>
       </div>
-      <div class="form-group">
-          <small class="text-muted ml-3" >Don't have an account yet? <a href="{% url 'shops:register' %}">Sign Up Today</a></small>
-      </div>
+        <div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="{% url 'shops:register' %}" class="ml-2">Sign Up</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						Forgot password? <a href="{% url 'shops:reset_password' %}" class="ml-2">Reset password</a>
+					</div>
+
+        </div>
     </form>
     </div>
 {% endblock %}
