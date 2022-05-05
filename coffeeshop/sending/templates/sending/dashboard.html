@@ -3,11 +3,54 @@
 {% block content %}
 
 
+<style>
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    .column{
+        margin-bottom: 200px;
+        margin-top: 100px;
+        display: block;
+
+    }
+    .box{
+        width:900px;
+    }
+    #content{
+        background-color: lavenderblush;
+        display:flex;
+    }
+   .button{
+       margin-top: 30px;
+   }
+   h3{
+      text-align: center;
+   }
+    .pl{
+        margin-left: 200px;
+        margin-bottom: 50px;
+    }
+    h3{
+        margin-top:80px;
+    }
+
+
+</style>
+
+
 <div class="column">
+    <div class="pl">
+        <h2>Orders and some feedback</h2>
+    </div>
     {% for followed in user.profile.follows.all %}
         {% for message in followed.user.messages.all %}
+
             <div class="box">
                 {{ message.body }}
+
                 <span class="is-small has-text-grey-light">
                     ({{ message.created_at }} by {{ message.user.username }})
                 </span>
@@ -15,6 +58,7 @@
         {% endfor %}
     {% endfor %}
 </div>
+
 
 
 <div class="column is-one-third">
@@ -29,7 +73,7 @@
 
 <div class="block">
     <a href="{% url 'sending:profile' request.user.profile.id %} ">
-        <button class="button is-success is-light is-outlined is-fullwidth">
+        <button class="button is-dark is-light is-outlined is-fullwidth">
             My Profile
         </button>
     </a>
