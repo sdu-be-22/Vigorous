@@ -2,6 +2,45 @@
 
 {% block content %}
 
+<style>
+  #content{
+    margin-top: 15px;
+    background-color: lavenderblush;
+  }
+  a{
+    text-decoration: none;
+    width: 90%;
+  }
+  a:hover {
+    color:lavenderblush;
+    text-decoration: none;
+  }
+  .media-content p::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: black ;
+    width: 0%;
+    transition: all ease-in-out 300ms;
+  }
+  .media-content p:hover::after {
+    width: 13%;
+  }
+  .media-content p:last-child {
+    margin-right: 0;
+  }
+  .block{
+    margin-top: 2%;
+    margin-left:25%;
+    margin-bottom: 200px;
+    width: 50%;
+  }
+  .column{
+    margin-top: 50px;
+  }
+
+</style>
+
 <div class="column">
 
 {% for profile in profiles %}
@@ -13,7 +52,7 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img src="https://bulma.io/images/placeholders/96x96.png"
+                  <img src="https://www.kindpng.com/picc/m/49-497795_convo-user-icon-hd-png-download.png"
                        alt="Placeholder image">
                 </figure>
               </div>
