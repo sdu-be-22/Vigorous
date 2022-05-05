@@ -95,7 +95,7 @@ def product_detail(request, slug):
 
 
 
-def base(request):
+def basic(request):
     categories = Category.objects.all()
     products = Product.objects.all()
     form = sendEmail(request)
@@ -105,7 +105,7 @@ def base(request):
         'categories':categories,
         'products':products
     }
-    return render(request, 'shop/base.html',context)
+    return render(request, 'shop/basic.html',context)
 
 
 def updateItem(request):
