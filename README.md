@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/90819654/167105112-f676bd99-9a9e-4f16-a3e1-501c7a8bfd32.png)
+
+
 # Vigorous
 Our site is about coffee shop. Main difference from other sites is that we have a built-in messenger. And this feature simplify communication admins with costumers.
 ## Table of contents
