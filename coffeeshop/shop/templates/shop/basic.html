@@ -267,7 +267,13 @@ a:hover {
     color: var(--black);
     text-transform: uppercase;
 }
-
+.location{
+     text-decoration: none;
+     color: #fff;
+ }
+ a:hover{
+     text-decoration: none;
+ }
 </style>
 <section class="hero">
   <div class="intro">
@@ -276,7 +282,8 @@ a:hover {
       <h2>VIGOROUS</h2>
     </div>
     <div>
-      <button>See Nearest Location</button>
+      <button> <a class="location" href="https://www.google.kz/maps/place/Daily+Coffee/@43.2428754,76.9302436,14.61z/data=!4m9!1m2!2m1!1zY29mZmVlINGA0Y_QtNC-0Lwg0YEg0JDQu9C80LDRgtGL!3m5!1s0x38836ee839a7c0bb:0x68145d51584439ec!8m2!3d43.2429026!4d76.9424774!15sCiFjb2ZmZWUg0YDRj9C00L7QvCDRgSDQkNC70LzQsNGC0YtaIyIhY29mZmVlINGA0Y_QtNC-0Lwg0YEg0LDQu9C80LDRgtGLkgELY29mZmVlX3Nob3CaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVTlJkR1ZtUW5SQlJSQUI?hl=ru"> 
+        See Nearest Location </a></button>
     </div>
   </div>
   <div class="hero-bg">
@@ -298,21 +305,21 @@ a:hover {
         <img src="{% static 'images/about-1.svg'%}" alt="">
         <h3>made with love</h3>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quae amet beatae magni numquam facere sit. Tempora vel laboriosam repudiandae!</p>
-        <a href="#menu" class="btn">our menu</a>
+        <a href="{% url 'shops:shop' %}" class="btn">our menu</a>
      </div>
 
      <div class="box">
         <img src="{% static 'images/about-2.svg'%}" alt="">
         <h3>30 minutes delivery</h3>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quae amet beatae magni numquam facere sit. Tempora vel laboriosam repudiandae!</p>
-        <a href="#menu" class="btn">our menu</a>
+        <a href="{% url 'shops:shop' %}"class="btn">our menu</a>
      </div>
 
      <div class="box">
         <img src="{% static 'images/about-3.svg'%}" alt="">
         <h3>share with freinds</h3>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quae amet beatae magni numquam facere sit. Tempora vel laboriosam repudiandae!</p>
-        <a href="#menu" class="btn">our menu</a>
+        <a href="{% url 'shops:shop' %}" class="btn">our menu</a>
      </div>
 
   </div>

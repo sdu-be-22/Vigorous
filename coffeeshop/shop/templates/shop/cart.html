@@ -4,13 +4,13 @@
 	<style>
 		.col-lg-12{
 			display: flex;
-			background-color: #d4e9e2;
+			
 			padding: 40px;
 		}
 		.box-element{
 			width: 75%;
 			box-shadow: none;
-			background-color: #d4e9e2;
+			background-color: lavenderblush;
 		}
 		.box-element1{
 			width: 40%;
@@ -19,6 +19,31 @@
 		#main{
 			height: 700px;
 			padding-top: 50px;
+		}
+		.btn{
+			display: inline-block;
+			background-color: #fd5d5d; 
+			padding: 16px 48px;
+			text-decoration: none;
+			font-family: Helvetica;
+			font-weight: bold;
+			color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 8px 0 #cf2b2b, inset -5px 0 10px rgba(255, 255, 255, 0.2);
+			transition: all 0.3s;
+		}
+		.btn:active{
+			transform: translateY(4px);
+			box-shadow: 0 4px 0 #cf2b2b;
+		}
+		p{
+			font-size: 16px;
+		}
+		strong{
+			font-size: 14px;
+		}
+		.container{
+			margin-top: 1%;
 		}
 	</style>
 	<div id="main">
@@ -55,7 +80,7 @@
 						</div>
 						<div style="flex:1"><p>${{item.get_total}}</p></div>
 						<div style="flex:1">
-							<svg xmlns="http://www.w3.org/2000/svg" data-product="{{item.product.id}}" data-action="delete" width="16" height="16" fill="currentColor" class="bi bi-x update-cart" viewBox="0 0 16 16">
+							<svg xmlns="http://www.w3.org/2000/svg" data-product="{{item.product.id}}" data-action="delete" width="30" height="30" fill="currentColor" class="bi bi-x update-cart" viewBox="0 0 16 16">
 								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 							</svg>
 						</div>
@@ -66,7 +91,7 @@
 				<br>
 				<div class="box-element1">
 
-					<a  style="width: 50%; margin:5px; margin-left: 8px; background-color: #006241; border-color: #006241 ;" class="btn btn-success"  href="{% url 'shops:shop' %}">Continue Shopping</a>
+					<a class="btn"  href="{% url 'shops:shop' %}">Continue Shopping</a>
 					<br>
 					<br>
 					<h5>ORDER SUMMARY</h5>
@@ -86,7 +111,7 @@
 							<h4 style="margin-right: 60%;">Total:</h4>
 							<h4><strong>${{order.get_cart_total}}</strong></h4>
 						</div>
-						<a  style="width: 90%; margin:5px; margin-left: 8px; background-color: #006241; border-color: #006241 ;" class="btn btn-success" href="{% url 'shops:checkout' %}">Checkout</a>
+						<a class="btn" href="{% url 'shops:checkout' %}">Checkout</a>
 					</div>
 					
 

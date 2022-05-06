@@ -1,6 +1,42 @@
 {% extends 'shop/main.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .btn{
+			display: inline-block;
+			background-color: #fd5d5d; 
+			padding: 16px 48px;
+			text-decoration: none;
+			font-family: Helvetica;
+			font-weight: bold;
+			color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 8px 0 #cf2b2b, inset -5px 0 10px rgba(255, 255, 255, 0.2);
+			transition: all 0.3s;
+		}
+		.btn:active{
+			transform: translateY(4px);
+			box-shadow: 0 4px 0 #cf2b2b;
+		}
+        #content{
+            height: 500px;
+        }
+        .box-element{
+            height: 305px;
+        }
+        .row{
+            padding-top: 10%;
+        }
+        #form{
+            padding-top: 5%;
+        }
+        p{
+            font-size: 21px;
+        }
+        input{
+            font-size: 12px;
+        }
+</style>
 <div class="row">
     <div class="col-lg-6">
         <div class="box-element" id="form-wrapper">
@@ -28,7 +64,7 @@
                 </div>
 
                 <hr>
-                <input id="form-button" style="background-color: #006241; border-color: #006241 ;" class="btn btn-success btn-block" type="submit" value="Continue">
+                <input id="form-button"  class="btn btn-block" type="submit" value="Continue">
             </form>
         </div>
 
@@ -43,7 +79,7 @@
     <div class="col-lg-6">
         <div class="box-element">
             
-            <a  style="width: 50%; margin:5px; margin-left: 8px; background-color: #006241; border-color: #006241 ;" class="btn btn-success"  href="{% url 'shops:cart' %}">Back to Cart</a>
+            <a   class="btn"  href="{% url 'shops:cart' %}">Back to Cart</a>
             <hr>
             <h3>Order Summary</h3>
             <hr>
