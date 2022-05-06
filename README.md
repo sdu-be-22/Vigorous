@@ -10,7 +10,7 @@ Our site is about coffee shop. Main difference from other sites is that we have 
 * [General Info](#general-info)
 * [Teachers](#teachers)
 * [Team Members](#team-members)
-* [Screenshots](#screenshots) (soon)
+* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 
 ## General Info
