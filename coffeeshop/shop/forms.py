@@ -7,10 +7,16 @@ from . models import Comment
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ( 'comment_body',)
+        fields = ('comment_body',)
         widgets = {
-            'comment_body':forms.Textarea(attrs={'class':'forms-control'}),
+            'comment_body':forms.Textarea(attrs={'col':40,'rows':10}),
         }
+    def clean_comment_body(self):
+        fb = self.cleaned_data['comment_body']
+        if len(fb) > 50:
+            raise forms.ValidationError('Length of comment greater than 50')
+        
+        return fb
 class EmailForm(forms.Form):
     recipient = forms.EmailField()
 
