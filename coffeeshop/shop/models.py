@@ -100,7 +100,7 @@ class ShippingAddress(models.Model):
 class Comment(models.Model):
     product = models.ForeignKey(Product, related_name="comments", on_delete=models.CASCADE)
     commenter_name = models.CharField(max_length=200)
-    comment_body = models.TextField()
+    comment_body = models.TextField(max_length=350)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
